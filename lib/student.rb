@@ -75,6 +75,17 @@ class Student
       LIMIT ? ;
     SQL
     table = DB[:conn].execute(sql, 1)
+    table.map do |row|
+      stud = self.new_from_db(row)
+      stud
+    end
+  end
+  def self.all_students_in_grade_X(grade)
+    sql = <<-SQL
+      SELECT * FROM students
+      WHERE grade = ? ;
+    SQL
+    table = DB[:conn].execute(sql, grade
     stud = self.new_from_db(table[0])
     stud
   end
