@@ -65,7 +65,7 @@ class Student
       WHERE grade = 9
       LIMIT ? ;
     SQL
-
+    DB[:conn].execute(sql, number)
   end
 
   def self.create_table
