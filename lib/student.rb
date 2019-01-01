@@ -45,7 +45,10 @@ class Student
       WHERE grade <= 11 ;
     SQL
     table = DB[:conn].execute(sql)
-    table
+    table.map do |row|
+      stud = self.new_from_db(row)
+      stud
+    end
   end
 
   def save
