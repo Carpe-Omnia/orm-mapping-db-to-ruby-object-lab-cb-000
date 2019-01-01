@@ -80,17 +80,19 @@ class Student
       stud
     end
   end
+
   def self.all_students_in_grade_X(grade)
     sql = <<-SQL
       SELECT * FROM students
       WHERE grade = ? ;
     SQL
-    table = DB[:conn].execute(sql, grade
+    table = DB[:conn].execute(sql, grade)
     table.map do |row|
       stud = self.new_from_db(row)
       stud
     end
   end
+
   def self.create_table
     sql = <<-SQL
     CREATE TABLE IF NOT EXISTS students (
